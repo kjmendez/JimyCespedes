@@ -1,6 +1,6 @@
 require('dotenv').config();
 const app = require('./src/app');
-const syncDatabase = require('./database/sync');
+const syncDatabase = require('./src/database/sync');
 
 const PORT = process.env.PORT || 3000;
 
