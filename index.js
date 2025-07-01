@@ -1,5 +1,5 @@
 require('dotenv').config();
-const app = require('./app'); // ✔️ Ya contiene express y las rutas
+const app = require('./src/app');
 const syncDatabase = require('./database/sync');
 
 const PORT = process.env.PORT || 3000;
