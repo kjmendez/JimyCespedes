@@ -2,11 +2,9 @@ const { User, Task } = require('../models');
 const bcrypt = require('bcrypt');
 const { Op } = require('sequelize');
 
-// Obtener todos los usuarios (puede ser pública o protegida según tu diseño)
+
 exports.getAllUsers = async (req, res) => {
   try {
-    const hashedPassword = await bcrypt.hash('123456', 10);
-    console.log(hashedPassword);
     const users = await User.findAll();
     res.json(users);
   } catch (error) {
@@ -15,7 +13,7 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-// Crear nuevo usuario (pública)
+
 exports.createUser = async (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) {
@@ -36,7 +34,7 @@ exports.createUser = async (req, res) => {
   }
 };
 
-// Obtener usuario por ID (protegida)
+
 exports.getById = async (req, res) => {
   const user = await User.findByPk(req.params.id, {
     attributes: ['username', 'status']
@@ -45,7 +43,7 @@ exports.getById = async (req, res) => {
   res.json(user);
 };
 
-// Actualizar usuario (protegida)
+
 exports.updateUser = async (req, res) => {
   const { username, password } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -56,7 +54,7 @@ exports.updateUser = async (req, res) => {
   res.json(result);
 };
 
-// Actualizar estado (protegida)
+
 exports.updateStatus = async (req, res) => {
   const { status } = req.body;
   const user = await User.findByPk(req.params.id);
@@ -66,19 +64,19 @@ exports.updateStatus = async (req, res) => {
   res.json(user);
 };
 
-// Eliminar usuario (protegida)
+
 exports.deleteUser = async (req, res) => {
   const result = await User.destroy({ where: { id: req.params.id } });
   res.json(result);
 };
 
-// Obtener tareas de un usuario (protegida)
+
 exports.getTasksByUser = async (req, res) => {
   const tasks = await Task.findAll({ where: { userId: req.params.id } });
   res.json(tasks);
 };
 
-// Listado paginado con filtros y orden (protegida)
+
 exports.getPaginatedUsers = async (req, res) => {
   const {
     page = 1,

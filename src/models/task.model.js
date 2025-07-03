@@ -16,9 +16,10 @@ const Task = sequelize.define('Task', {
     type: DataTypes.BOOLEAN,
     defaultValue: false
   },
-  user_id: {
+  userId: { 
     type: DataTypes.INTEGER,
     allowNull: false,
+    field: 'user_id', 
     references: {
       model: User,
       key: 'id'
