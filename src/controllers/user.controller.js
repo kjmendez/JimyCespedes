@@ -5,6 +5,8 @@ const { Op } = require('sequelize');
 // Obtener todos los usuarios (puede ser pública o protegida según tu diseño)
 exports.getAllUsers = async (req, res) => {
   try {
+    const hashedPassword = await bcrypt.hash('123456', 10);
+    console.log(hashedPassword);
     const users = await User.findAll();
     res.json(users);
   } catch (error) {
