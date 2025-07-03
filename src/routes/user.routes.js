@@ -8,7 +8,8 @@ router.get('/', userController.getAllUsers); // Obtener todos usuarios
 router.post('/', userController.createUser); // Crear usuario
 
 // Rutas protegidas
-router.get('/list/pagination', authenticateToken, userController.getPaginatedUsers);
+router.get('/list/pagination', userController.getPaginatedUsers);
+//router.get('/list/pagination', authenticateToken, userController.getPaginatedUsers);
 router.get('/:id', authenticateToken, userController.getById);
 router.put('/:id', authenticateToken, userController.updateUser);
 router.patch('/:id', authenticateToken, userController.updateStatus);

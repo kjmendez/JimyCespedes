@@ -1,3 +1,4 @@
+const { Task } = require('../models');
 exports.getAllTasks = async (req, res) => {
     const tasks = await Task.findAll({ where: { userId: req.user.userId } });
     res.json(tasks);
